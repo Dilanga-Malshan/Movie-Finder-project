@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI-powered movie analysis with Ollama" />
+  <title>AI Movie Finder</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">MF</span>
+      <span>AI Movie Finder</span>
+    </a>
+    <div class="status"><span class="status-dot"></span> Powered by Ollama</div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">LOCAL AI · FILM ANALYSIS</p>
+      <h1>Discover the story<br /><em>behind the movie.</em></h1>
+      <p class="hero-copy">Enter a movie title and get an intelligent film-study breakdown of its story, themes, influences, and connections.</p>
+
+      <form id="movie-form" class="search-box">
+        <input id="movie-input" name="movie" type="text" placeholder="Try: Interstellar, Parasite, The Batman..." autocomplete="off" required />
+        <button type="submit" id="analyze-btn"><span>Analyze</span><span class="arrow">→</span></button>
+      </form>
+      <div class="examples">
+        <span>Try:</span>
+        <button type="button" class="example" data-movie="Interstellar">Interstellar</button>
+        <button type="button" class="example" data-movie="Parasite">Parasite</button>
+        <button type="button" class="example" data-movie="The Dark Knight">The Dark Knight</button>
+      </div>
+    </section>
+
+    <section id="loading" class="panel hidden">
+      <div class="spinner"></div>
+      <div><strong>Analyzing the film...</strong><p>Ollama is building your film-study guide.</p></div>
+    </section>
+
+    <section id="error" class="panel error hidden">
+      <strong>Something went wrong.</strong>
+      <p id="error-message">Make sure Ollama is running and the selected model is available.</p>
+    </section>
+
+    <section id="result" class="results hidden">
+      <div class="title-card">
+        <div>
+          <p class="eyebrow">MOVIE ANALYSIS</p>
+          <h2 id="movie-title">—</h2>
+          <p id="movie-meta" class="meta">—</p>
+        </div>
+        <button id="new-analysis" class="ghost-btn">New analysis</button>
+      </div>
+
+      <div class="grid two">
+        <article class="card overview-card"><div class="card-label">OVERVIEW</div><p id="overview"></p></article>
+        <article class="card"><div class="card-label">GENRES</div><div id="genres" class="chips"></div></article>
+      </div>
+
+      <article class="card"><div class="card-label">IMPORTANT THEMES</div><div id="themes" class="theme-list"></div></article>
+
+      <article class="card feature-card"><div class="card-label">INTERESTING TOPIC</div><h3 id="interesting-topic"></h3></article>
+
+      <div class="section-heading"><p class="eyebrow">RECOMMENDATIONS</p><h3>Films worth exploring next</h3></div>
+      <div id="similar-movies" class="movie-grid"></div>
+
+      <div class="section-heading"><p class="eyebrow">FILM CONTEXT</p><h3>Understand the influences</h3></div>
+      <div id="context-movies" class="movie-grid"></div>
+
+      <article class="card questions-card"><div class="card-label">DEEPER QUESTIONS</div><ol id="questions"></ol></article>
+    </section>
+  </main>
+
+  <footer>AI Movie Finder · FastAPI + Ollama</footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
